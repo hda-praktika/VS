@@ -1,0 +1,10 @@
+add_executable(prosumer prosumer.cpp script.cpp)
+target_include_directories(prosumer PUBLIC .)
+target_link_libraries(prosumer PUBLIC core)
+
+include(FindLua)
+find_package(Lua REQUIRED)
+target_include_directories(prosumer PRIVATE ${LUA_INCLUDE_DIR})
+find_package(cxxopts CONFIG REQUIRED)
+find_path(BOOST_UUID_INCLUDE_DIRS "boost/uuid/basic_name_generator.hpp")
+target_link_libraries(prosumer PRIVATE ${LUA_LIBRARIES} ${BOOST_UUID_INCLUDE_DIRS} cxxopts::cxxopts)

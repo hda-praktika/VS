@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+    background: #393947;
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    justify-self: stretch;
+    width: 100%;
+    padding: 52px;
+    display: flex;
+    flex-direction: row;
+}
+
+main > div {
+    display: flex;
+    justify-self: stretch;
+}
+
+#energy {
+    flex: 2;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#map {
+    justify-items: stretch;
+    align-items: stretch;
+    display: flex;
+    position: relative;
+    flex: 1;
+}
+
+#map > img {
+    width: 100% !important;
+}
+
+div.dot {
+    position: absolute;
+    box-sizing: content-box;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 999999px;
+    background: rgb(12, 119, 87);
+}
+
+div.dot > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 999999px;
+    background: rgb(44, 207, 158);
+    animation-name: pulse;
+    animation-duration: 1.6s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+    from {
+        top: 0;
+        left: 0;
+        width: 12px;
+        height: 12px;
+        opacity: 0.8;
+    }
+    to {
+        top: -7px;
+        left: -7px;
+        width: 26px;
+        height: 26px;
+        opacity: 0;
+    }
+}
+
+header {
+    padding: 4px 24px;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+    background: #fff;
+    border-bottom: 3px solid #cbce28;
+}
+
+header > span {
+    flex: 1;
+    justify-self: center;
+    align-self: center;
+}
+
+#icon {
+    width: 70px;
+    height: 70px;
+    padding: 8px;
+    border-radius: 999999px;
+    background: #393947;
+    margin-right: 12px;
+}
+
+#logo {
+    padding: 8px;
+    height: 70px;
+}

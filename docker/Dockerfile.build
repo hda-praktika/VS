@@ -1,0 +1,22 @@
+FROM ubuntu:20.04
+
+RUN apt update && apt upgrade -y
+RUN apt install -y software-properties-common apt-transport-https ca-certificates gnupg software-properties-common wget
+
+# CMake installieren
+RUN wget -O- https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+RUN add-apt-repository 'deb https://apt.kitware.com/ubuntu/ focal-rc main'
+RUN apt update
+RUN apt install -y cmake
+
+# LLVM+Clang installieren
+RUN wget -O- https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+RUN add-apt-repository 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main'
+RUN apt update
+RUN apt install -y llvm-11 clang-11
+
+# vcpkg installieren
+RUN apt install -y git curl zip unzip tar
+RUN git clone https://github.com/microsoft/vcpkg.git /opt/vcpkg
+RUN echo 'export PATH="/opt/vcpkg:$PATH"' >> ~/.bashrc
+RUN bash -c 'CC="/usr/bin/clang-11" CXX="/usr/bin/clang++-11" /opt/vcpkg/bootstrap-vcpkg.sh'
